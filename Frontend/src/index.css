@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Eater&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+
+
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+.fontt{
+  font-family: 'Poppins', sans-serif;
+}
+
+.logo {
+  font-family: "Eater", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+
