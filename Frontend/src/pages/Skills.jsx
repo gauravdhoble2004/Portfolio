@@ -1,3 +1,4 @@
+
 import React, { useRef } from 'react'
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -5,11 +6,10 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-
-function skills() {
-
+function Skills() {
     const scrollRef = useRef();
-    const multiScrollRef = useRef ([]);
+    const multiScrollRef = useRef([]);
+    
     useGSAP(() => {
         const tl = gsap.timeline()
         tl.from(scrollRef.current, {
@@ -17,157 +17,113 @@ function skills() {
             opacity: 0,
             duration: 2,
             ease: "power3.out",
-        scrollTrigger: {
+            scrollTrigger: {
                 trigger: scrollRef.current,
-                start: "top 70%",   
-                end: "top 30%",     
-                scrub: true,        
-               
+                start: "top 80%",
+                end: "top 50%",
+                scrub: true,
             }
-
         })
-        tl.from(multiScrollRef.current,{
-            x:-80,
-            opacity:0,
-            delay:2,
+        
+        tl.from(multiScrollRef.current, {
+            x: -80,
+            opacity: 0,
             duration: 2,
             ease: "power3.out",
-            stagger:0.5,
-        scrollTrigger: {
+            stagger: 0.2,
+            scrollTrigger: {
                 trigger: multiScrollRef.current,
-                start: "top 60%",   
-                end: "top 30%",     
-                scrub: true,        
-            
+                start: "top 80%",
+                end: "top 50%",
+                scrub: true,
             }
         })
-
     }, [])
-    
+
+    const skills = [
+        { name: 'HTML', src: '/assets/html2.png' },
+        { name: 'CSS', src: '/assets/css.png' },
+        { name: 'Bootstrap', src: '/assets/bootstrap.png' },
+        { name: 'React', src: '/assets/react2.png' },
+        { name: 'Tailwind', src: '/assets/tailwind.png' },
+        { name: 'JavaScript', src: '/assets/js2.png' },
+        { name: 'Node.js', src: '/assets/node.png' },
+        { name: 'Express', src: '/assets/express.png' },
+        { name: 'MongoDB', src: '/assets/mongo.png' },
+        { name: 'GSAP', src: '/assets/gsap.png' },
+        { name: 'Python', src: '/assets/python.png' },
+        { name: 'React Three', src: '/assets/r3f.jpg' }
+    ];
 
     return (
-
-        <div className='flex flex-col justify-center '>     {/*main*/}
-
-            <div className='mt-7 flex '>
-                <div className='p-1'>     {/*heading*/}
-                    <h1 className='ml-160 font-bold text-5xl text-[#28cd5f] m-1 p-4 logo'>What I do</h1>
-                    <h6 className='font-thin opacity-[0.4] text-sm ml-90'>
-                        I’m from Maharashtra and living in Nagpur. I’m currently pursuing my B.Tech in Computer Engineering and will be graduating in 2026.<br>
-                        </br>
-                    </h6>
-                    <h6 className='font-thin opacity-[0.4] text-sm ml-122'>Apart from being a student, I also work as a freelancer to gain experience and improve my skills.
-                    </h6>
+        <div className='flex flex-col justify-center min-h-screen px-4 sm:px-6 py-8 sm:py-12 bg-[#000]'>
+            {/* Header Section */}
+            <div className='text-center mb-8 sm:mb-12'>
+                <h1 className='text-3xl sm:text-4xl md:text-5xl font-bold text-[#28cd5f] mb-4 logo'>My Skills</h1>
+                <div className='max-w-2xl mx-auto px-2'>
+                    <p className='font-thin opacity-70 text-sm sm:text-base md:text-lg mb-3 leading-relaxed text-gray-300'>
+                        From Maharashtra, living in Nagpur. Pursuing B.Tech in Computer Engineering (2026).
+                    </p>
+                    <p className='font-thin opacity-70 text-sm sm:text-base md:text-lg leading-relaxed text-gray-300'>
+                        Working as a freelancer to gain real-world experience.
+                    </p>
                 </div>
-
             </div>
 
-            <div className='mt-10 cards flex flex-row'>                 {/*skills*/}
-
-                <div ref={scrollRef} className='h-10 ml-10 mt-33'>
-                    <div className="flex flex-col items-center text-4xl font-bold leading-[1.1]  text-[#28cd5f] shadow-[0_0_20px_#28cd5f]   p-6 rounded-lg">
-                        <span className="-rotate-90 logo">S</span>
-                        <span className="-rotate-90 logo">L</span>
-                        <span className="-rotate-90 logo">L</span>
-                        <span className="-rotate-90 logo">I</span>
-                        <span className="-rotate-90 logo">K</span>
-                        <span className="-rotate-90 logo">S</span>
+            {/* Skills Layout - Single column on mobile */}
+            <div className='flex flex-col xl:flex-row items-center justify-center gap-6 sm:gap-8 xl:gap-12 max-w-6xl mx-auto'>
+                
+                {/* Skills Title - Horizontal on mobile, vertical on desktop */}
+                <div ref={scrollRef} className='xl:flex-shrink-0'>
+                    <div className="flex xl:flex-col items-center text-2xl sm:text-3xl md:text-4xl font-bold text-[#28cd5f] shadow-[0_0_20px_#28cd5f] p-4 sm:p-5 rounded-xl border border-[#28cd5f]/20">
+                        {'SKILLS'.split('').map((letter, index) => (
+                            <span 
+                                key={index} 
+                                className="xl:-rotate-90 mx-1 sm:mx-2 xl:mx-0 xl:my-2 logo hover:text-[#acde7a] transition-colors duration-300"
+                            >
+                                {letter}
+                            </span>
+                        ))}
                     </div>
                 </div>
 
-
-                <div  className='flex pr-5 pl-15 flex-wrap gap-4 m-10 '>
-                    {/*card comtainer*/}
-                    <div ref={(el) => (multiScrollRef.current[1]) = el}
-                    className='card bg-[#0d0d0d] h-50   shadow-black    shadow-8xl rounded-xl'>
-                        <img className='w-[100%] h-[100%] p-5  rounded-xl transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:scale-105 hover:shadow-2xl'
-                            src='/assets/html2.png' />
+                {/* Skills Grid - 4 per row on mobile, perfect touch targets */}
+                <div className='w-full'>
+                    <div className='grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 gap-3 sm:gap-4'>
+                        {skills.map((skill, index) => (
+                            <div 
+                                key={index}
+                                ref={(el) => (multiScrollRef.current[index + 1] = el)}
+                                className='group relative bg-[#0d0d0d] rounded-xl shadow-lg hover:shadow-xl hover:shadow-[#28cd5f]/20 transition-all duration-300 border border-gray-800 hover:border-[#28cd5f]/50 min-h-[80px] flex items-center justify-center'
+                            >
+                                <div className='aspect-square p-3 sm:p-4 flex items-center justify-center w-full'>
+                                    <img 
+                                        className='w-full h-full object-contain rounded-lg transition-transform duration-300 group-hover:scale-110'
+                                        src={skill.src} 
+                                        alt={skill.name}
+                                        loading="lazy"
+                                    />
+                                </div>
+                                
+                                {/* Skill Name - Appear on hover */}
+                                <div className='absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-[#28cd5f] text-black text-xs font-semibold px-2 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg pointer-events-none'>
+                                    {skill.name}
+                                </div>
+                            </div>
+                        ))}
                     </div>
-
-                    <div ref={(el) => (multiScrollRef.current[2]) = el}
-                     className='card bg-[#0d0d0d] h-50   shadow-black    shadow-8xl rounded-xl'>
-                        <img className='w-[100%] h-[100%] p-5  rounded-xl transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:scale-105 hover:shadow-2xl'
-                            src='/assets/css.png' />
-                    </div>
-
-                    <div ref={(el) => (multiScrollRef.current[3]) = el} 
-                    className='card bg-[#0d0d0d] h-50   shadow-black   shadow-8xl rounded-xl'>
-                        <img className='w-[100%] h-[100%] p-5  rounded-xl transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:scale-105 hover:shadow-2xl'
-                            src='/assets/bootstrap.png' />
-                    </div>
-
-                    <div ref={(el) => (multiScrollRef.current[4]) = el}
-                     className='card bg-[#0d0d0d] h-50   shadow-black    shadow-8xl rounded-xl'>
-                        <img className='w-[100%] h-[100%] p-5  rounded-xl transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:scale-105 hover:shadow-2xl'
-                            src='/assets/react2.png' />
-                    </div>
-
-                    <div ref={(el) => (multiScrollRef.current[5]) = el}
-                     className='card bg-[#0d0d0d] h-45   shadow-black   shadow-8xl rounded-xl'>
-                        <img className='w-[100%] h-[100%] p-5  rounded-xl transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:scale-105 hover:shadow-2xl'
-                            src='/assets/tailwind.png' />
-                    </div>
-
-                    <div ref={(el) => (multiScrollRef.current[6]) = el}
-                    className='card bg-[#0d0d0d] h-50   shadow-black    shadow-8xl rounded-xl'>
-                        <img className='w-[100%] h-[100%] p-5  rounded-xl transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:scale-105 hover:shadow-2xl'
-                            src='/assets/js2.png' />
-                    </div>
-
-                    <div ref={(el) => (multiScrollRef.current[7]) = el}
-                    className='card bg-[#0d0d0d] h-45  shadow-black    shadow-8xl rounded-xl'>
-                        <img className='w-[100%] h-[100%] p-5  rounded-xl transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:scale-105 hover:shadow-2xl'
-                            src='/assets/node.png' />
-                    </div>
-
-                    <div ref={(el) => (multiScrollRef.current[8]) = el}
-                     className='card bg-[#0d0d0d] h-45   shadow-black    shadow-8xl rounded-xl'>
-                        <img className='w-[100%] h-[100%] p-5  rounded-xl transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:scale-105 hover:shadow-2xl'
-                            src='/assets/express.png' />
-                    </div>
-
-                    <div ref={(el) => (multiScrollRef.current[9]) = el}
-                     className='card bg-[#0d0d0d] h-45   shadow-black   shadow-8xl rounded-xl'>
-                        <img className='w-[100%] h-[100%] p-5  rounded-xl transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:scale-105 hover:shadow-2xl'
-                            src='/assets/mongo.png' />
-                    </div>
-
-                    <div ref={(el) => (multiScrollRef.current[10]) = el}
-                     className='card bg-[#0d0d0d] h-45   shadow-black    shadow-8xl rounded-xl'>
-                        <img className='w-[100%] h-[100%] p-5  rounded-xl transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:scale-105 hover:shadow-2xl'
-                            src='/assets/gsap.png' />
-                    </div>
-
-                    <div ref={(el) => (multiScrollRef.current[11]) = el}
-                     className='card bg-[#0d0d0d] h-45   shadow-black    shadow-8xl rounded-xl'>
-                        <img className='w-[100%] h-[100%] p-5  rounded-xl transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:scale-105 hover:shadow-2xl'
-                            src='/assets/python.png' />
-                    </div>
-
-                    <div ref={(el) => (multiScrollRef.current[12]) = el}
-                     className='card bg-[#0d0d0d] h-47 w-50  shadow-black    shadow-8xl rounded-xl'>
-                        <img className='w-[100%] h-[100%] p-5  rounded-xl transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:scale-105 hover:shadow-2xl'
-                            src='/assets/r3f.jpg' />
-                    </div>
-
-            
-
-
-
-
                 </div>
-
-
-
-                <div>
-
-                </div>
-
             </div>
 
-
+            {/* Skills Counter */}
+            <div className='text-center mt-6 sm:mt-8'>
+                <div className='inline-flex items-center gap-2 bg-gray-900/50 px-4 py-2 rounded-full border border-[#28cd5f]/20'>
+                    <div className='w-2 h-2 bg-[#28cd5f] rounded-full animate-pulse'></div>
+                    <span className='text-gray-300 text-sm'>{skills.length} Technologies Mastered</span>
+                </div>
+            </div>
         </div>
     )
 }
 
-export default skills
+export default Skills;

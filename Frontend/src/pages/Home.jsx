@@ -1,3 +1,4 @@
+
 import React, { useEffect } from "react";
 import Lenis from "@studio-freight/lenis";
 import Video from '../components/home/Video.jsx';
@@ -12,7 +13,7 @@ function Home() {
   useEffect(() => {
     const lenis = new Lenis({
       smooth: true,
-      lerp: 0.1, // inertia
+      lerp: 0.1,
     });
 
     function raf(time) {
@@ -23,45 +24,43 @@ function Home() {
   }, []);
 
   return (
-
-
-    <div className='w-screen'>
-
-      <div className='h-screen w-screen relative bg-black'>
-        {/* <Video /> */}
-      </div>
-
-      <div className='absolute top-0 left-0 z-30 ' >
+    <div className='w-full overflow-x-hidden'>
+   
+   
+      <div className='fixed top-0 left-0 z-50 w-full'>
         <Navbar />
       </div>
 
-      <div className='absolute inset-0 z-20 text-white'>
-        <Info />
-      </div>
+     
+      <section id="home" className='min-h-screen w-full relative bg-black pt-20'>
+        <div className='h-screen w-full relative bg-black'>
+      
+        </div>
+        <div className='absolute inset-0 z-20 text-white'>
+          <Info />
+        </div>
+      </section>
 
-      <div className="h-screen w-screen   bg-[#000] text-white text-3xl">
+      
+      <section id="skills" className="min-h-screen w-full bg-[#000] text-white">
         <Skills />
+      </section>
 
-      </div>
-
-      <div className="h-[200vh] w-[200vh] flex  bg-[#000000] text-white text-3xl">
+  
+      <section id="projects" className="min-h-screen w-full bg-[#000000] text-white">
         <Projects />
-      </div>
+      </section>
 
-      <div className="h-screen w-screen flex  bg-[#000000] text-white text-3xl">
-
+    
+      <section id="experience" className="min-h-screen w-full bg-[#000000] text-white">
         <Experience />
+      </section>
 
-      </div>
-      <div className="h-screen w-screen flex  bg-[#000000] text-white text-3xl">
-
+    
+      <section id="contact" className="min-h-screen w-full bg-[#000000] text-white">
         <Contact />
-
-      </div>
-
-
+      </section>
     </div>
-
   )
 }
 
